@@ -98,6 +98,12 @@ impl VaccelAgentClient {
         ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "Genop", cres);
         Ok(cres)
     }
+
+    pub fn get_timers(&self, ctx: ttrpc::context::Context, req: &super::profiling::ProfilingRequest) -> ::ttrpc::Result<super::profiling::ProfilingResponse> {
+        let mut cres = super::profiling::ProfilingResponse::new();
+        ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "GetTimers", cres);
+        Ok(cres)
+    }
 }
 
 struct CreateSessionMethod {
@@ -221,6 +227,17 @@ impl ::ttrpc::MethodHandler for GenopMethod {
     }
 }
 
+struct GetTimersMethod {
+    service: Arc<std::boxed::Box<dyn VaccelAgent + Send + Sync>>,
+}
+
+impl ::ttrpc::MethodHandler for GetTimersMethod {
+    fn handler(&self, ctx: ::ttrpc::TtrpcContext, req: ::ttrpc::Request) -> ::ttrpc::Result<()> {
+        ::ttrpc::request_handler!(self, ctx, req, profiling, ProfilingRequest, get_timers);
+        Ok(())
+    }
+}
+
 pub trait VaccelAgent {
     fn create_session(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::session::CreateSessionRequest) -> ::ttrpc::Result<super::session::CreateSessionResponse> {
         Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/CreateSession is not supported".to_string())))
@@ -254,6 +271,9 @@ pub trait VaccelAgent {
     }
     fn genop(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::genop::GenopRequest) -> ::ttrpc::Result<super::genop::GenopResponse> {
         Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/Genop is not supported".to_string())))
+    }
+    fn get_timers(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::profiling::ProfilingRequest) -> ::ttrpc::Result<super::profiling::ProfilingResponse> {
+        Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/GetTimers is not supported".to_string())))
     }
 }
 
@@ -292,6 +312,9 @@ pub fn create_vaccel_agent(service: Arc<std::boxed::Box<dyn VaccelAgent + Send +
 
     methods.insert("/vaccel.VaccelAgent/Genop".to_string(),
                     std::boxed::Box::new(GenopMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
+
+    methods.insert("/vaccel.VaccelAgent/GetTimers".to_string(),
+                    std::boxed::Box::new(GetTimersMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
 
     methods
 }

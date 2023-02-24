@@ -35,13 +35,10 @@ service VaccelAgent {
 	// Image Classification API
 	rpc ImageClassification(ImageClassificationRequest) returns (ImageClassificationResponse);
 
-	// TensorFlow inference API
-	rpc TensorflowModelLoad(TensorflowModelLoadRequest) returns (TensorflowModelLoadResponse);
-	rpc TensorflowModelUnload(TensorflowModelUnloadRequest) returns (TensorflowModelUnloadResponse);
-	rpc TensorflowModelRun(TensorflowModelRunRequest) returns (TensorflowModelRunResponse);
-
-	// Generic Operation API
-	rpc Genop(GenopRequest) returns (GenopResponse); 
+	// PyTorch inference API
+	rpc TorchModelLoad(TorchModelLoadRequest) returns (TorchModelLoadResponse);
+	rpc TorchModelUnload(TorchModelUnloadRequest) returns (TorchModelUnloadResponse);
+	rpc TorchModelRun(TorchModelRunRequest) returns (TorchModelRunResponse);
 }
 
 message VaccelEmpty {}

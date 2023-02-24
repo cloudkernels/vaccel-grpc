@@ -32,11 +32,16 @@ message CreateTensorflowSavedModelRequest {
 	bytes var_index = 3;
 }
 
+message CreateTorchflowSavedModelRequest {
+	bytes model = 1;
+}
+
 message CreateResourceRequest {
 	oneof model {
 		CreateTensorflowModelRequest tf = 1;
 		CreateCaffeModelRequest caffe = 2;
 		CreateTensorflowSavedModelRequest tf_saved = 3;
+		CreateTorchflowSavedModelRequest torch_saved = 4;
 	}
 }
 

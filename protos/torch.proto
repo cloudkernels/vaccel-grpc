@@ -104,7 +104,7 @@ message TorchModelRunRequest {
 	repeated TorchTensor out_tensors = 5;
 };
 
-message InferenceResult {
+message JitloadForwardResult {
 	// An inference result is a number of output tensors
 	repeated TorchTensor out_tensors = 1;
 };
@@ -112,6 +112,6 @@ message InferenceResult {
 message TorchModelRunResponse {
 	oneof result {
 		VaccelError error = 1;
-		InferenceResult result = 2;
+		JitloadForwardResult result = 2;
 	}
 };

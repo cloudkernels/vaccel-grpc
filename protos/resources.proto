@@ -41,7 +41,7 @@ message CreateResourceRequest {
 		CreateTensorflowModelRequest tf = 1;
 		CreateCaffeModelRequest caffe = 2;
 		CreateTensorflowSavedModelRequest tf_saved = 3;
-		CreateTorchflowSavedModelRequest torch_saved = 4;
+		CreateTorchSavedModelRequest torch_saved = 4;
 	}
 }
 

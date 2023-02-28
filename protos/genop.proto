@@ -39,4 +39,5 @@ message GenopResponse {
 		VaccelError error = 1;
 		GenopResult result = 2;
 	}
+	optional string timer_buf = 3;
 };

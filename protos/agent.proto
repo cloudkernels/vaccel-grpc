@@ -42,9 +42,9 @@ service VaccelAgent {
 	rpc TensorflowModelRun(TensorflowModelRunRequest) returns (TensorflowModelRunResponse);
 
 	// PyTorch inference API
-	rpc TorchModelLoad(TorchModelLoadRequest) returns (TorchModelLoadResponse);
-	rpc TorchModelUnload(TorchModelUnloadRequest) returns (TorchModelUnloadResponse);
-	rpc TorchModelRun(TorchModelRunRequest) returns (TorchModelRunResponse);
+	//rpc TorchModelLoad(TorchModelLoadRequest) returns (TorchModelLoadResponse);
+	//rpc TorchModelUnload(TorchModelUnloadRequest) returns (TorchModelUnloadResponse);
+	rpc TorchJitloadForward(TorchJitloadForwardRequest) returns (TorchJitloadForwardResponse);
 }
 
 message VaccelEmpty {}

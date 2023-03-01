@@ -93,21 +93,9 @@ impl VaccelAgentClient {
         Ok(cres)
     }
 
-    pub fn torch_model_load(&self, ctx: ttrpc::context::Context, req: &super::torch::TorchModelLoadRequest) -> ::ttrpc::Result<super::torch::TorchModelLoadResponse> {
-        let mut cres = super::torch::TorchModelLoadResponse::new();
-        ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "TorchModelLoad", cres);
-        Ok(cres)
-    }
-
-    pub fn torch_model_unload(&self, ctx: ttrpc::context::Context, req: &super::torch::TorchModelUnloadRequest) -> ::ttrpc::Result<super::torch::TorchModelUnloadResponse> {
-        let mut cres = super::torch::TorchModelUnloadResponse::new();
-        ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "TorchModelUnload", cres);
-        Ok(cres)
-    }
-
-    pub fn torch_model_run(&self, ctx: ttrpc::context::Context, req: &super::torch::TorchModelRunRequest) -> ::ttrpc::Result<super::torch::TorchModelRunResponse> {
-        let mut cres = super::torch::TorchModelRunResponse::new();
-        ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "TorchModelRun", cres);
+    pub fn torch_jitload_forward(&self, ctx: ttrpc::context::Context, req: &super::torch::TorchJitloadForwardRequest) -> ::ttrpc::Result<super::torch::TorchJitloadForwardResponse> {
+        let mut cres = super::torch::TorchJitloadForwardResponse::new();
+        ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "TorchJitloadForward", cres);
         Ok(cres)
     }
 }
@@ -222,35 +210,13 @@ impl ::ttrpc::MethodHandler for TensorflowModelRunMethod {
     }
 }
 
-struct TorchModelLoadMethod {
+struct TorchJitloadForwardMethod {
     service: Arc<std::boxed::Box<dyn VaccelAgent + Send + Sync>>,
 }
 
-impl ::ttrpc::MethodHandler for TorchModelLoadMethod {
+impl ::ttrpc::MethodHandler for TorchJitloadForwardMethod {
     fn handler(&self, ctx: ::ttrpc::TtrpcContext, req: ::ttrpc::Request) -> ::ttrpc::Result<()> {
-        ::ttrpc::request_handler!(self, ctx, req, torch, TorchModelLoadRequest, torch_model_load);
-        Ok(())
-    }
-}
-
-struct TorchModelUnloadMethod {
-    service: Arc<std::boxed::Box<dyn VaccelAgent + Send + Sync>>,
-}
-
-impl ::ttrpc::MethodHandler for TorchModelUnloadMethod {
-    fn handler(&self, ctx: ::ttrpc::TtrpcContext, req: ::ttrpc::Request) -> ::ttrpc::Result<()> {
-        ::ttrpc::request_handler!(self, ctx, req, torch, TorchModelUnloadRequest, torch_model_unload);
-        Ok(())
-    }
-}
-
-struct TorchModelRunMethod {
-    service: Arc<std::boxed::Box<dyn VaccelAgent + Send + Sync>>,
-}
-
-impl ::ttrpc::MethodHandler for TorchModelRunMethod {
-    fn handler(&self, ctx: ::ttrpc::TtrpcContext, req: ::ttrpc::Request) -> ::ttrpc::Result<()> {
-        ::ttrpc::request_handler!(self, ctx, req, torch, TorchModelRunRequest, torch_model_run);
+        ::ttrpc::request_handler!(self, ctx, req, torch, TorchJitloadForwardRequest, torch_jitload_forward);
         Ok(())
     }
 }
@@ -286,14 +252,8 @@ pub trait VaccelAgent {
     fn tensorflow_model_run(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::tensorflow::TensorflowModelRunRequest) -> ::ttrpc::Result<super::tensorflow::TensorflowModelRunResponse> {
         Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TensorflowModelRun is not supported".to_string())))
     }
-    fn torch_model_load(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::torch::TorchModelLoadRequest) -> ::ttrpc::Result<super::torch::TorchModelLoadResponse> {
-        Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TorchModelLoad is not supported".to_string())))
-    }
-    fn torch_model_unload(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::torch::TorchModelUnloadRequest) -> ::ttrpc::Result<super::torch::TorchModelUnloadResponse> {
-        Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TorchModelUnload is not supported".to_string())))
-    }
-    fn torch_model_run(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::torch::TorchModelRunRequest) -> ::ttrpc::Result<super::torch::TorchModelRunResponse> {
-        Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TorchModelRun is not supported".to_string())))
+    fn torch_jitload_forward(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::torch::TorchJitloadForwardRequest) -> ::ttrpc::Result<super::torch::TorchJitloadForwardResponse> {
+        Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TorchJitloadForward is not supported".to_string())))
     }
 }
 
@@ -330,14 +290,8 @@ pub fn create_vaccel_agent(service: Arc<std::boxed::Box<dyn VaccelAgent + Send +
     methods.insert("/vaccel.VaccelAgent/TensorflowModelRun".to_string(),
                     std::boxed::Box::new(TensorflowModelRunMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
 
-    methods.insert("/vaccel.VaccelAgent/TorchModelLoad".to_string(),
-                    std::boxed::Box::new(TorchModelLoadMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
-
-    methods.insert("/vaccel.VaccelAgent/TorchModelUnload".to_string(),
-                    std::boxed::Box::new(TorchModelUnloadMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
-
-    methods.insert("/vaccel.VaccelAgent/TorchModelRun".to_string(),
-                    std::boxed::Box::new(TorchModelRunMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
+    methods.insert("/vaccel.VaccelAgent/TorchJitloadForward".to_string(),
+                    std::boxed::Box::new(TorchJitloadForwardMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
 
     methods
 }

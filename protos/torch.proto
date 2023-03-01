@@ -18,28 +18,6 @@ package vaccel;
 
 import "error.proto";
 
-message TorchModelLoadRequest {
-	uint32 session_id = 1;
-	int64 model_id = 2;
-};
-
-message TorchModelLoadResponse {
-	oneof result {
-		bytes graph_def = 1;
-		VaccelError error = 2;
-	}
-};
-
-message TorchModelUnloadRequest {
-	uint32 session_id = 1;
-	int64 model_id = 2;
-};
-
-message TorchModelUnloadResponse {
-	bool success = 1;
-	VaccelError error = 2;
-};
-
 enum TorchDataType {
 	// Add unused value here so that we are compatible
 	// with what vAccelRT returns us
@@ -90,7 +68,7 @@ message TorchTensor {
 };
 
 // Jitload_forward
-message TorchModelRunRequest {
+message TorchJitloadForwardRequest {
 	uint32 session_id = 1;
 	int64 model_id = 2;
 
@@ -104,14 +82,14 @@ message TorchModelRunRequest {
 	repeated TorchTensor out_tensors = 5;
 };
 
-message JitloadForwardResult {
+message TorchJitloadForwardResult {
 	// An inference result is a number of output tensors
 	repeated TorchTensor out_tensors = 1;
 };
 
-message TorchModelRunResponse {
+message TorchJitloadForwardResponse {
 	oneof result {
 		VaccelError error = 1;
-		JitloadForwardResult result = 2;
+		TorchJitloadForwardResult result = 2;
 	}
 };

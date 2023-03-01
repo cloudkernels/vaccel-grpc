@@ -24,863 +24,6 @@
 // const _PROTOBUF_VERSION_CHECK: () = ::protobuf::VERSION_2_27_1;
 
 #[derive(PartialEq,Clone,Default)]
-pub struct TorchModelLoadRequest {
-    // message fields
-    pub session_id: u32,
-    pub model_id: i64,
-    // special fields
-    pub unknown_fields: ::protobuf::UnknownFields,
-    pub cached_size: ::protobuf::CachedSize,
-}
-
-impl<'a> ::std::default::Default for &'a TorchModelLoadRequest {
-    fn default() -> &'a TorchModelLoadRequest {
-        <TorchModelLoadRequest as ::protobuf::Message>::default_instance()
-    }
-}
-
-impl TorchModelLoadRequest {
-    pub fn new() -> TorchModelLoadRequest {
-        ::std::default::Default::default()
-    }
-
-    // uint32 session_id = 1;
-
-
-    pub fn get_session_id(&self) -> u32 {
-        self.session_id
-    }
-    pub fn clear_session_id(&mut self) {
-        self.session_id = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_session_id(&mut self, v: u32) {
-        self.session_id = v;
-    }
-
-    // int64 model_id = 2;
-
-
-    pub fn get_model_id(&self) -> i64 {
-        self.model_id
-    }
-    pub fn clear_model_id(&mut self) {
-        self.model_id = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_model_id(&mut self, v: i64) {
-        self.model_id = v;
-    }
-}
-
-impl ::protobuf::Message for TorchModelLoadRequest {
-    fn is_initialized(&self) -> bool {
-        true
-    }
-
-    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        while !is.eof()? {
-            let (field_number, wire_type) = is.read_tag_unpack()?;
-            match field_number {
-                1 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_uint32()?;
-                    self.session_id = tmp;
-                },
-                2 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_int64()?;
-                    self.model_id = tmp;
-                },
-                _ => {
-                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
-                },
-            };
-        }
-        ::std::result::Result::Ok(())
-    }
-
-    // Compute sizes of nested messages
-    #[allow(unused_variables)]
-    fn compute_size(&self) -> u32 {
-        let mut my_size = 0;
-        if self.session_id != 0 {
-            my_size += ::protobuf::rt::value_size(1, self.session_id, ::protobuf::wire_format::WireTypeVarint);
-        }
-        if self.model_id != 0 {
-            my_size += ::protobuf::rt::value_size(2, self.model_id, ::protobuf::wire_format::WireTypeVarint);
-        }
-        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
-        self.cached_size.set(my_size);
-        my_size
-    }
-
-    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        if self.session_id != 0 {
-            os.write_uint32(1, self.session_id)?;
-        }
-        if self.model_id != 0 {
-            os.write_int64(2, self.model_id)?;
-        }
-        os.write_unknown_fields(self.get_unknown_fields())?;
-        ::std::result::Result::Ok(())
-    }
-
-    fn get_cached_size(&self) -> u32 {
-        self.cached_size.get()
-    }
-
-    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
-        &self.unknown_fields
-    }
-
-    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
-        &mut self.unknown_fields
-    }
-
-    fn as_any(&self) -> &dyn (::std::any::Any) {
-        self as &dyn (::std::any::Any)
-    }
-    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
-        self as &mut dyn (::std::any::Any)
-    }
-    fn into_any(self: ::std::boxed::Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
-        self
-    }
-
-    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
-        Self::descriptor_static()
-    }
-
-    fn new() -> TorchModelLoadRequest {
-        TorchModelLoadRequest::new()
-    }
-
-    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
-        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::LazyV2::INIT;
-        descriptor.get(|| {
-            let mut fields = ::std::vec::Vec::new();
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
-                "session_id",
-                |m: &TorchModelLoadRequest| { &m.session_id },
-                |m: &mut TorchModelLoadRequest| { &mut m.session_id },
-            ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
-                "model_id",
-                |m: &TorchModelLoadRequest| { &m.model_id },
-                |m: &mut TorchModelLoadRequest| { &mut m.model_id },
-            ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchModelLoadRequest>(
-                "TorchModelLoadRequest",
-                fields,
-                file_descriptor_proto()
-            )
-        })
-    }
-
-    fn default_instance() -> &'static TorchModelLoadRequest {
-        static instance: ::protobuf::rt::LazyV2<TorchModelLoadRequest> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(TorchModelLoadRequest::new)
-    }
-}
-
-impl ::protobuf::Clear for TorchModelLoadRequest {
-    fn clear(&mut self) {
-        self.session_id = 0;
-        self.model_id = 0;
-        self.unknown_fields.clear();
-    }
-}
-
-impl ::std::fmt::Debug for TorchModelLoadRequest {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
-    }
-}
-
-impl ::protobuf::reflect::ProtobufValue for TorchModelLoadRequest {
-    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
-        ::protobuf::reflect::ReflectValueRef::Message(self)
-    }
-}
-
-#[derive(PartialEq,Clone,Default)]
-pub struct TorchModelLoadResponse {
-    // message oneof groups
-    pub result: ::std::option::Option<TorchModelLoadResponse_oneof_result>,
-    // special fields
-    pub unknown_fields: ::protobuf::UnknownFields,
-    pub cached_size: ::protobuf::CachedSize,
-}
-
-impl<'a> ::std::default::Default for &'a TorchModelLoadResponse {
-    fn default() -> &'a TorchModelLoadResponse {
-        <TorchModelLoadResponse as ::protobuf::Message>::default_instance()
-    }
-}
-
-#[derive(Clone,PartialEq,Debug)]
-pub enum TorchModelLoadResponse_oneof_result {
-    graph_def(::std::vec::Vec<u8>),
-    error(super::error::VaccelError),
-}
-
-impl TorchModelLoadResponse {
-    pub fn new() -> TorchModelLoadResponse {
-        ::std::default::Default::default()
-    }
-
-    // bytes graph_def = 1;
-
-
-    pub fn get_graph_def(&self) -> &[u8] {
-        match self.result {
-            ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(ref v)) => v,
-            _ => &[],
-        }
-    }
-    pub fn clear_graph_def(&mut self) {
-        self.result = ::std::option::Option::None;
-    }
-
-    pub fn has_graph_def(&self) -> bool {
-        match self.result {
-            ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(..)) => true,
-            _ => false,
-        }
-    }
-
-    // Param is passed by value, moved
-    pub fn set_graph_def(&mut self, v: ::std::vec::Vec<u8>) {
-        self.result = ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(v))
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_graph_def(&mut self) -> &mut ::std::vec::Vec<u8> {
-        if let ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(_)) = self.result {
-        } else {
-            self.result = ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(::std::vec::Vec::new()));
-        }
-        match self.result {
-            ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(ref mut v)) => v,
-            _ => panic!(),
-        }
-    }
-
-    // Take field
-    pub fn take_graph_def(&mut self) -> ::std::vec::Vec<u8> {
-        if self.has_graph_def() {
-            match self.result.take() {
-                ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(v)) => v,
-                _ => panic!(),
-            }
-        } else {
-            ::std::vec::Vec::new()
-        }
-    }
-
-    // .vaccel.VaccelError error = 2;
-
-
-    pub fn get_error(&self) -> &super::error::VaccelError {
-        match self.result {
-            ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(ref v)) => v,
-            _ => <super::error::VaccelError as ::protobuf::Message>::default_instance(),
-        }
-    }
-    pub fn clear_error(&mut self) {
-        self.result = ::std::option::Option::None;
-    }
-
-    pub fn has_error(&self) -> bool {
-        match self.result {
-            ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(..)) => true,
-            _ => false,
-        }
-    }
-
-    // Param is passed by value, moved
-    pub fn set_error(&mut self, v: super::error::VaccelError) {
-        self.result = ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(v))
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_error(&mut self) -> &mut super::error::VaccelError {
-        if let ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(_)) = self.result {
-        } else {
-            self.result = ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(super::error::VaccelError::new()));
-        }
-        match self.result {
-            ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(ref mut v)) => v,
-            _ => panic!(),
-        }
-    }
-
-    // Take field
-    pub fn take_error(&mut self) -> super::error::VaccelError {
-        if self.has_error() {
-            match self.result.take() {
-                ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(v)) => v,
-                _ => panic!(),
-            }
-        } else {
-            super::error::VaccelError::new()
-        }
-    }
-}
-
-impl ::protobuf::Message for TorchModelLoadResponse {
-    fn is_initialized(&self) -> bool {
-        if let Some(TorchModelLoadResponse_oneof_result::error(ref v)) = self.result {
-            if !v.is_initialized() {
-                return false;
-            }
-        }
-        true
-    }
-
-    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        while !is.eof()? {
-            let (field_number, wire_type) = is.read_tag_unpack()?;
-            match field_number {
-                1 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    self.result = ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::graph_def(is.read_bytes()?));
-                },
-                2 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    self.result = ::std::option::Option::Some(TorchModelLoadResponse_oneof_result::error(is.read_message()?));
-                },
-                _ => {
-                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
-                },
-            };
-        }
-        ::std::result::Result::Ok(())
-    }
-
-    // Compute sizes of nested messages
-    #[allow(unused_variables)]
-    fn compute_size(&self) -> u32 {
-        let mut my_size = 0;
-        if let ::std::option::Option::Some(ref v) = self.result {
-            match v {
-                &TorchModelLoadResponse_oneof_result::graph_def(ref v) => {
-                    my_size += ::protobuf::rt::bytes_size(1, &v);
-                },
-                &TorchModelLoadResponse_oneof_result::error(ref v) => {
-                    let len = v.compute_size();
-                    my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-                },
-            };
-        }
-        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
-        self.cached_size.set(my_size);
-        my_size
-    }
-
-    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        if let ::std::option::Option::Some(ref v) = self.result {
-            match v {
-                &TorchModelLoadResponse_oneof_result::graph_def(ref v) => {
-                    os.write_bytes(1, v)?;
-                },
-                &TorchModelLoadResponse_oneof_result::error(ref v) => {
-                    os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-                    os.write_raw_varint32(v.get_cached_size())?;
-                    v.write_to_with_cached_sizes(os)?;
-                },
-            };
-        }
-        os.write_unknown_fields(self.get_unknown_fields())?;
-        ::std::result::Result::Ok(())
-    }
-
-    fn get_cached_size(&self) -> u32 {
-        self.cached_size.get()
-    }
-
-    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
-        &self.unknown_fields
-    }
-
-    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
-        &mut self.unknown_fields
-    }
-
-    fn as_any(&self) -> &dyn (::std::any::Any) {
-        self as &dyn (::std::any::Any)
-    }
-    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
-        self as &mut dyn (::std::any::Any)
-    }
-    fn into_any(self: ::std::boxed::Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
-        self
-    }
-
-    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
-        Self::descriptor_static()
-    }
-
-    fn new() -> TorchModelLoadResponse {
-        TorchModelLoadResponse::new()
-    }
-
-    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
-        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::LazyV2::INIT;
-        descriptor.get(|| {
-            let mut fields = ::std::vec::Vec::new();
-            fields.push(::protobuf::reflect::accessor::make_singular_bytes_accessor::<_>(
-                "graph_def",
-                TorchModelLoadResponse::has_graph_def,
-                TorchModelLoadResponse::get_graph_def,
-            ));
-            fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, super::error::VaccelError>(
-                "error",
-                TorchModelLoadResponse::has_error,
-                TorchModelLoadResponse::get_error,
-            ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchModelLoadResponse>(
-                "TorchModelLoadResponse",
-                fields,
-                file_descriptor_proto()
-            )
-        })
-    }
-
-    fn default_instance() -> &'static TorchModelLoadResponse {
-        static instance: ::protobuf::rt::LazyV2<TorchModelLoadResponse> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(TorchModelLoadResponse::new)
-    }
-}
-
-impl ::protobuf::Clear for TorchModelLoadResponse {
-    fn clear(&mut self) {
-        self.result = ::std::option::Option::None;
-        self.result = ::std::option::Option::None;
-        self.unknown_fields.clear();
-    }
-}
-
-impl ::std::fmt::Debug for TorchModelLoadResponse {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
-    }
-}
-
-impl ::protobuf::reflect::ProtobufValue for TorchModelLoadResponse {
-    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
-        ::protobuf::reflect::ReflectValueRef::Message(self)
-    }
-}
-
-#[derive(PartialEq,Clone,Default)]
-pub struct TorchModelUnloadRequest {
-    // message fields
-    pub session_id: u32,
-    pub model_id: i64,
-    // special fields
-    pub unknown_fields: ::protobuf::UnknownFields,
-    pub cached_size: ::protobuf::CachedSize,
-}
-
-impl<'a> ::std::default::Default for &'a TorchModelUnloadRequest {
-    fn default() -> &'a TorchModelUnloadRequest {
-        <TorchModelUnloadRequest as ::protobuf::Message>::default_instance()
-    }
-}
-
-impl TorchModelUnloadRequest {
-    pub fn new() -> TorchModelUnloadRequest {
-        ::std::default::Default::default()
-    }
-
-    // uint32 session_id = 1;
-
-
-    pub fn get_session_id(&self) -> u32 {
-        self.session_id
-    }
-    pub fn clear_session_id(&mut self) {
-        self.session_id = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_session_id(&mut self, v: u32) {
-        self.session_id = v;
-    }
-
-    // int64 model_id = 2;
-
-
-    pub fn get_model_id(&self) -> i64 {
-        self.model_id
-    }
-    pub fn clear_model_id(&mut self) {
-        self.model_id = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_model_id(&mut self, v: i64) {
-        self.model_id = v;
-    }
-}
-
-impl ::protobuf::Message for TorchModelUnloadRequest {
-    fn is_initialized(&self) -> bool {
-        true
-    }
-
-    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        while !is.eof()? {
-            let (field_number, wire_type) = is.read_tag_unpack()?;
-            match field_number {
-                1 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_uint32()?;
-                    self.session_id = tmp;
-                },
-                2 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_int64()?;
-                    self.model_id = tmp;
-                },
-                _ => {
-                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
-                },
-            };
-        }
-        ::std::result::Result::Ok(())
-    }
-
-    // Compute sizes of nested messages
-    #[allow(unused_variables)]
-    fn compute_size(&self) -> u32 {
-        let mut my_size = 0;
-        if self.session_id != 0 {
-            my_size += ::protobuf::rt::value_size(1, self.session_id, ::protobuf::wire_format::WireTypeVarint);
-        }
-        if self.model_id != 0 {
-            my_size += ::protobuf::rt::value_size(2, self.model_id, ::protobuf::wire_format::WireTypeVarint);
-        }
-        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
-        self.cached_size.set(my_size);
-        my_size
-    }
-
-    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        if self.session_id != 0 {
-            os.write_uint32(1, self.session_id)?;
-        }
-        if self.model_id != 0 {
-            os.write_int64(2, self.model_id)?;
-        }
-        os.write_unknown_fields(self.get_unknown_fields())?;
-        ::std::result::Result::Ok(())
-    }
-
-    fn get_cached_size(&self) -> u32 {
-        self.cached_size.get()
-    }
-
-    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
-        &self.unknown_fields
-    }
-
-    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
-        &mut self.unknown_fields
-    }
-
-    fn as_any(&self) -> &dyn (::std::any::Any) {
-        self as &dyn (::std::any::Any)
-    }
-    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
-        self as &mut dyn (::std::any::Any)
-    }
-    fn into_any(self: ::std::boxed::Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
-        self
-    }
-
-    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
-        Self::descriptor_static()
-    }
-
-    fn new() -> TorchModelUnloadRequest {
-        TorchModelUnloadRequest::new()
-    }
-
-    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
-        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::LazyV2::INIT;
-        descriptor.get(|| {
-            let mut fields = ::std::vec::Vec::new();
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
-                "session_id",
-                |m: &TorchModelUnloadRequest| { &m.session_id },
-                |m: &mut TorchModelUnloadRequest| { &mut m.session_id },
-            ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
-                "model_id",
-                |m: &TorchModelUnloadRequest| { &m.model_id },
-                |m: &mut TorchModelUnloadRequest| { &mut m.model_id },
-            ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchModelUnloadRequest>(
-                "TorchModelUnloadRequest",
-                fields,
-                file_descriptor_proto()
-            )
-        })
-    }
-
-    fn default_instance() -> &'static TorchModelUnloadRequest {
-        static instance: ::protobuf::rt::LazyV2<TorchModelUnloadRequest> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(TorchModelUnloadRequest::new)
-    }
-}
-
-impl ::protobuf::Clear for TorchModelUnloadRequest {
-    fn clear(&mut self) {
-        self.session_id = 0;
-        self.model_id = 0;
-        self.unknown_fields.clear();
-    }
-}
-
-impl ::std::fmt::Debug for TorchModelUnloadRequest {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
-    }
-}
-
-impl ::protobuf::reflect::ProtobufValue for TorchModelUnloadRequest {
-    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
-        ::protobuf::reflect::ReflectValueRef::Message(self)
-    }
-}
-
-#[derive(PartialEq,Clone,Default)]
-pub struct TorchModelUnloadResponse {
-    // message fields
-    pub success: bool,
-    pub error: ::protobuf::SingularPtrField<super::error::VaccelError>,
-    // special fields
-    pub unknown_fields: ::protobuf::UnknownFields,
-    pub cached_size: ::protobuf::CachedSize,
-}
-
-impl<'a> ::std::default::Default for &'a TorchModelUnloadResponse {
-    fn default() -> &'a TorchModelUnloadResponse {
-        <TorchModelUnloadResponse as ::protobuf::Message>::default_instance()
-    }
-}
-
-impl TorchModelUnloadResponse {
-    pub fn new() -> TorchModelUnloadResponse {
-        ::std::default::Default::default()
-    }
-
-    // bool success = 1;
-
-
-    pub fn get_success(&self) -> bool {
-        self.success
-    }
-    pub fn clear_success(&mut self) {
-        self.success = false;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_success(&mut self, v: bool) {
-        self.success = v;
-    }
-
-    // .vaccel.VaccelError error = 2;
-
-
-    pub fn get_error(&self) -> &super::error::VaccelError {
-        self.error.as_ref().unwrap_or_else(|| <super::error::VaccelError as ::protobuf::Message>::default_instance())
-    }
-    pub fn clear_error(&mut self) {
-        self.error.clear();
-    }
-
-    pub fn has_error(&self) -> bool {
-        self.error.is_some()
-    }
-
-    // Param is passed by value, moved
-    pub fn set_error(&mut self, v: super::error::VaccelError) {
-        self.error = ::protobuf::SingularPtrField::some(v);
-    }
-
-    // Mutable pointer to the field.
-    // If field is not initialized, it is initialized with default value first.
-    pub fn mut_error(&mut self) -> &mut super::error::VaccelError {
-        if self.error.is_none() {
-            self.error.set_default();
-        }
-        self.error.as_mut().unwrap()
-    }
-
-    // Take field
-    pub fn take_error(&mut self) -> super::error::VaccelError {
-        self.error.take().unwrap_or_else(|| super::error::VaccelError::new())
-    }
-}
-
-impl ::protobuf::Message for TorchModelUnloadResponse {
-    fn is_initialized(&self) -> bool {
-        for v in &self.error {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        true
-    }
-
-    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        while !is.eof()? {
-            let (field_number, wire_type) = is.read_tag_unpack()?;
-            match field_number {
-                1 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_bool()?;
-                    self.success = tmp;
-                },
-                2 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.error)?;
-                },
-                _ => {
-                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
-                },
-            };
-        }
-        ::std::result::Result::Ok(())
-    }
-
-    // Compute sizes of nested messages
-    #[allow(unused_variables)]
-    fn compute_size(&self) -> u32 {
-        let mut my_size = 0;
-        if self.success != false {
-            my_size += 2;
-        }
-        if let Some(ref v) = self.error.as_ref() {
-            let len = v.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        }
-        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
-        self.cached_size.set(my_size);
-        my_size
-    }
-
-    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        if self.success != false {
-            os.write_bool(1, self.success)?;
-        }
-        if let Some(ref v) = self.error.as_ref() {
-            os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        }
-        os.write_unknown_fields(self.get_unknown_fields())?;
-        ::std::result::Result::Ok(())
-    }
-
-    fn get_cached_size(&self) -> u32 {
-        self.cached_size.get()
-    }
-
-    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
-        &self.unknown_fields
-    }
-
-    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
-        &mut self.unknown_fields
-    }
-
-    fn as_any(&self) -> &dyn (::std::any::Any) {
-        self as &dyn (::std::any::Any)
-    }
-    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
-        self as &mut dyn (::std::any::Any)
-    }
-    fn into_any(self: ::std::boxed::Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
-        self
-    }
-
-    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
-        Self::descriptor_static()
-    }
-
-    fn new() -> TorchModelUnloadResponse {
-        TorchModelUnloadResponse::new()
-    }
-
-    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
-        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::LazyV2::INIT;
-        descriptor.get(|| {
-            let mut fields = ::std::vec::Vec::new();
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBool>(
-                "success",
-                |m: &TorchModelUnloadResponse| { &m.success },
-                |m: &mut TorchModelUnloadResponse| { &mut m.success },
-            ));
-            fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::error::VaccelError>>(
-                "error",
-                |m: &TorchModelUnloadResponse| { &m.error },
-                |m: &mut TorchModelUnloadResponse| { &mut m.error },
-            ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchModelUnloadResponse>(
-                "TorchModelUnloadResponse",
-                fields,
-                file_descriptor_proto()
-            )
-        })
-    }
-
-    fn default_instance() -> &'static TorchModelUnloadResponse {
-        static instance: ::protobuf::rt::LazyV2<TorchModelUnloadResponse> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(TorchModelUnloadResponse::new)
-    }
-}
-
-impl ::protobuf::Clear for TorchModelUnloadResponse {
-    fn clear(&mut self) {
-        self.success = false;
-        self.error.clear();
-        self.unknown_fields.clear();
-    }
-}
-
-impl ::std::fmt::Debug for TorchModelUnloadResponse {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
-    }
-}
-
-impl ::protobuf::reflect::ProtobufValue for TorchModelUnloadResponse {
-    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
-        ::protobuf::reflect::ReflectValueRef::Message(self)
-    }
-}
-
-#[derive(PartialEq,Clone,Default)]
 pub struct TorchTensor {
     // message fields
     pub data: ::std::vec::Vec<u8>,
@@ -1217,7 +360,7 @@ impl ::protobuf::reflect::ProtobufValue for TorchTensor {
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct TorchModelRunRequest {
+pub struct TorchJitloadForwardRequest {
     // message fields
     pub session_id: u32,
     pub model_id: i64,
@@ -1229,14 +372,14 @@ pub struct TorchModelRunRequest {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a TorchModelRunRequest {
-    fn default() -> &'a TorchModelRunRequest {
-        <TorchModelRunRequest as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a TorchJitloadForwardRequest {
+    fn default() -> &'a TorchJitloadForwardRequest {
+        <TorchJitloadForwardRequest as ::protobuf::Message>::default_instance()
     }
 }
 
-impl TorchModelRunRequest {
-    pub fn new() -> TorchModelRunRequest {
+impl TorchJitloadForwardRequest {
+    pub fn new() -> TorchJitloadForwardRequest {
         ::std::default::Default::default()
     }
 
@@ -1347,7 +490,7 @@ impl TorchModelRunRequest {
     }
 }
 
-impl ::protobuf::Message for TorchModelRunRequest {
+impl ::protobuf::Message for TorchJitloadForwardRequest {
     fn is_initialized(&self) -> bool {
         for v in &self.in_tensors {
             if !v.is_initialized() {
@@ -1473,8 +616,8 @@ impl ::protobuf::Message for TorchModelRunRequest {
         Self::descriptor_static()
     }
 
-    fn new() -> TorchModelRunRequest {
-        TorchModelRunRequest::new()
+    fn new() -> TorchJitloadForwardRequest {
+        TorchJitloadForwardRequest::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -1483,44 +626,44 @@ impl ::protobuf::Message for TorchModelRunRequest {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
                 "session_id",
-                |m: &TorchModelRunRequest| { &m.session_id },
-                |m: &mut TorchModelRunRequest| { &mut m.session_id },
+                |m: &TorchJitloadForwardRequest| { &m.session_id },
+                |m: &mut TorchJitloadForwardRequest| { &mut m.session_id },
             ));
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
                 "model_id",
-                |m: &TorchModelRunRequest| { &m.model_id },
-                |m: &mut TorchModelRunRequest| { &mut m.model_id },
+                |m: &TorchJitloadForwardRequest| { &m.model_id },
+                |m: &mut TorchJitloadForwardRequest| { &mut m.model_id },
             ));
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
                 "run_options",
-                |m: &TorchModelRunRequest| { &m.run_options },
-                |m: &mut TorchModelRunRequest| { &mut m.run_options },
+                |m: &TorchJitloadForwardRequest| { &m.run_options },
+                |m: &mut TorchJitloadForwardRequest| { &mut m.run_options },
             ));
             fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<TorchTensor>>(
                 "in_tensors",
-                |m: &TorchModelRunRequest| { &m.in_tensors },
-                |m: &mut TorchModelRunRequest| { &mut m.in_tensors },
+                |m: &TorchJitloadForwardRequest| { &m.in_tensors },
+                |m: &mut TorchJitloadForwardRequest| { &mut m.in_tensors },
             ));
             fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<TorchTensor>>(
                 "out_tensors",
-                |m: &TorchModelRunRequest| { &m.out_tensors },
-                |m: &mut TorchModelRunRequest| { &mut m.out_tensors },
+                |m: &TorchJitloadForwardRequest| { &m.out_tensors },
+                |m: &mut TorchJitloadForwardRequest| { &mut m.out_tensors },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchModelRunRequest>(
-                "TorchModelRunRequest",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchJitloadForwardRequest>(
+                "TorchJitloadForwardRequest",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static TorchModelRunRequest {
-        static instance: ::protobuf::rt::LazyV2<TorchModelRunRequest> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(TorchModelRunRequest::new)
+    fn default_instance() -> &'static TorchJitloadForwardRequest {
+        static instance: ::protobuf::rt::LazyV2<TorchJitloadForwardRequest> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(TorchJitloadForwardRequest::new)
     }
 }
 
-impl ::protobuf::Clear for TorchModelRunRequest {
+impl ::protobuf::Clear for TorchJitloadForwardRequest {
     fn clear(&mut self) {
         self.session_id = 0;
         self.model_id = 0;
@@ -1531,20 +674,20 @@ impl ::protobuf::Clear for TorchModelRunRequest {
     }
 }
 
-impl ::std::fmt::Debug for TorchModelRunRequest {
+impl ::std::fmt::Debug for TorchJitloadForwardRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for TorchModelRunRequest {
+impl ::protobuf::reflect::ProtobufValue for TorchJitloadForwardRequest {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct JitloadForwardResult {
+pub struct TorchJitloadForwardResult {
     // message fields
     pub out_tensors: ::protobuf::RepeatedField<TorchTensor>,
     // special fields
@@ -1552,14 +695,14 @@ pub struct JitloadForwardResult {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a JitloadForwardResult {
-    fn default() -> &'a JitloadForwardResult {
-        <JitloadForwardResult as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a TorchJitloadForwardResult {
+    fn default() -> &'a TorchJitloadForwardResult {
+        <TorchJitloadForwardResult as ::protobuf::Message>::default_instance()
     }
 }
 
-impl JitloadForwardResult {
-    pub fn new() -> JitloadForwardResult {
+impl TorchJitloadForwardResult {
+    pub fn new() -> TorchJitloadForwardResult {
         ::std::default::Default::default()
     }
 
@@ -1589,7 +732,7 @@ impl JitloadForwardResult {
     }
 }
 
-impl ::protobuf::Message for JitloadForwardResult {
+impl ::protobuf::Message for TorchJitloadForwardResult {
     fn is_initialized(&self) -> bool {
         for v in &self.out_tensors {
             if !v.is_initialized() {
@@ -1663,8 +806,8 @@ impl ::protobuf::Message for JitloadForwardResult {
         Self::descriptor_static()
     }
 
-    fn new() -> JitloadForwardResult {
-        JitloadForwardResult::new()
+    fn new() -> TorchJitloadForwardResult {
+        TorchJitloadForwardResult::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -1673,65 +816,65 @@ impl ::protobuf::Message for JitloadForwardResult {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<TorchTensor>>(
                 "out_tensors",
-                |m: &JitloadForwardResult| { &m.out_tensors },
-                |m: &mut JitloadForwardResult| { &mut m.out_tensors },
+                |m: &TorchJitloadForwardResult| { &m.out_tensors },
+                |m: &mut TorchJitloadForwardResult| { &mut m.out_tensors },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<JitloadForwardResult>(
-                "JitloadForwardResult",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchJitloadForwardResult>(
+                "TorchJitloadForwardResult",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static JitloadForwardResult {
-        static instance: ::protobuf::rt::LazyV2<JitloadForwardResult> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(JitloadForwardResult::new)
+    fn default_instance() -> &'static TorchJitloadForwardResult {
+        static instance: ::protobuf::rt::LazyV2<TorchJitloadForwardResult> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(TorchJitloadForwardResult::new)
     }
 }
 
-impl ::protobuf::Clear for JitloadForwardResult {
+impl ::protobuf::Clear for TorchJitloadForwardResult {
     fn clear(&mut self) {
         self.out_tensors.clear();
         self.unknown_fields.clear();
     }
 }
 
-impl ::std::fmt::Debug for JitloadForwardResult {
+impl ::std::fmt::Debug for TorchJitloadForwardResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for JitloadForwardResult {
+impl ::protobuf::reflect::ProtobufValue for TorchJitloadForwardResult {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct TorchModelRunResponse {
+pub struct TorchJitloadForwardResponse {
     // message oneof groups
-    pub result: ::std::option::Option<TorchModelRunResponse_oneof_result>,
+    pub result: ::std::option::Option<TorchJitloadForwardResponse_oneof_result>,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a TorchModelRunResponse {
-    fn default() -> &'a TorchModelRunResponse {
-        <TorchModelRunResponse as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a TorchJitloadForwardResponse {
+    fn default() -> &'a TorchJitloadForwardResponse {
+        <TorchJitloadForwardResponse as ::protobuf::Message>::default_instance()
     }
 }
 
 #[derive(Clone,PartialEq,Debug)]
-pub enum TorchModelRunResponse_oneof_result {
+pub enum TorchJitloadForwardResponse_oneof_result {
     error(super::error::VaccelError),
-    result(JitloadForwardResult),
+    result(TorchJitloadForwardResult),
 }
 
-impl TorchModelRunResponse {
-    pub fn new() -> TorchModelRunResponse {
+impl TorchJitloadForwardResponse {
+    pub fn new() -> TorchJitloadForwardResponse {
         ::std::default::Default::default()
     }
 
@@ -1740,7 +883,7 @@ impl TorchModelRunResponse {
 
     pub fn get_error(&self) -> &super::error::VaccelError {
         match self.result {
-            ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(ref v)) => v,
+            ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(ref v)) => v,
             _ => <super::error::VaccelError as ::protobuf::Message>::default_instance(),
         }
     }
@@ -1750,24 +893,24 @@ impl TorchModelRunResponse {
 
     pub fn has_error(&self) -> bool {
         match self.result {
-            ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(..)) => true,
+            ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(..)) => true,
             _ => false,
         }
     }
 
     // Param is passed by value, moved
     pub fn set_error(&mut self, v: super::error::VaccelError) {
-        self.result = ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(v))
+        self.result = ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(v))
     }
 
     // Mutable pointer to the field.
     pub fn mut_error(&mut self) -> &mut super::error::VaccelError {
-        if let ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(_)) = self.result {
+        if let ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(_)) = self.result {
         } else {
-            self.result = ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(super::error::VaccelError::new()));
+            self.result = ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(super::error::VaccelError::new()));
         }
         match self.result {
-            ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(ref mut v)) => v,
+            ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(ref mut v)) => v,
             _ => panic!(),
         }
     }
@@ -1776,7 +919,7 @@ impl TorchModelRunResponse {
     pub fn take_error(&mut self) -> super::error::VaccelError {
         if self.has_error() {
             match self.result.take() {
-                ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(v)) => v,
+                ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(v)) => v,
                 _ => panic!(),
             }
         } else {
@@ -1784,13 +927,13 @@ impl TorchModelRunResponse {
         }
     }
 
-    // .vaccel.JitloadForwardResult result = 2;
+    // .vaccel.TorchJitloadForwardResult result = 2;
 
 
-    pub fn get_result(&self) -> &JitloadForwardResult {
+    pub fn get_result(&self) -> &TorchJitloadForwardResult {
         match self.result {
-            ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(ref v)) => v,
-            _ => <JitloadForwardResult as ::protobuf::Message>::default_instance(),
+            ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(ref v)) => v,
+            _ => <TorchJitloadForwardResult as ::protobuf::Message>::default_instance(),
         }
     }
     pub fn clear_result(&mut self) {
@@ -1799,49 +942,49 @@ impl TorchModelRunResponse {
 
     pub fn has_result(&self) -> bool {
         match self.result {
-            ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(..)) => true,
+            ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(..)) => true,
             _ => false,
         }
     }
 
     // Param is passed by value, moved
-    pub fn set_result(&mut self, v: JitloadForwardResult) {
-        self.result = ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(v))
+    pub fn set_result(&mut self, v: TorchJitloadForwardResult) {
+        self.result = ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(v))
     }
 
     // Mutable pointer to the field.
-    pub fn mut_result(&mut self) -> &mut JitloadForwardResult {
-        if let ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(_)) = self.result {
+    pub fn mut_result(&mut self) -> &mut TorchJitloadForwardResult {
+        if let ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(_)) = self.result {
         } else {
-            self.result = ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(JitloadForwardResult::new()));
+            self.result = ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(TorchJitloadForwardResult::new()));
         }
         match self.result {
-            ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(ref mut v)) => v,
+            ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(ref mut v)) => v,
             _ => panic!(),
         }
     }
 
     // Take field
-    pub fn take_result(&mut self) -> JitloadForwardResult {
+    pub fn take_result(&mut self) -> TorchJitloadForwardResult {
         if self.has_result() {
             match self.result.take() {
-                ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(v)) => v,
+                ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(v)) => v,
                 _ => panic!(),
             }
         } else {
-            JitloadForwardResult::new()
+            TorchJitloadForwardResult::new()
         }
     }
 }
 
-impl ::protobuf::Message for TorchModelRunResponse {
+impl ::protobuf::Message for TorchJitloadForwardResponse {
     fn is_initialized(&self) -> bool {
-        if let Some(TorchModelRunResponse_oneof_result::error(ref v)) = self.result {
+        if let Some(TorchJitloadForwardResponse_oneof_result::error(ref v)) = self.result {
             if !v.is_initialized() {
                 return false;
             }
         }
-        if let Some(TorchModelRunResponse_oneof_result::result(ref v)) = self.result {
+        if let Some(TorchJitloadForwardResponse_oneof_result::result(ref v)) = self.result {
             if !v.is_initialized() {
                 return false;
             }
@@ -1857,13 +1000,13 @@ impl ::protobuf::Message for TorchModelRunResponse {
                     if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
-                    self.result = ::std::option::Option::Some(TorchModelRunResponse_oneof_result::error(is.read_message()?));
+                    self.result = ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::error(is.read_message()?));
                 },
                 2 => {
                     if wire_type != ::protobuf::wire_format::WireTypeLengthDelimited {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
-                    self.result = ::std::option::Option::Some(TorchModelRunResponse_oneof_result::result(is.read_message()?));
+                    self.result = ::std::option::Option::Some(TorchJitloadForwardResponse_oneof_result::result(is.read_message()?));
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -1879,11 +1022,11 @@ impl ::protobuf::Message for TorchModelRunResponse {
         let mut my_size = 0;
         if let ::std::option::Option::Some(ref v) = self.result {
             match v {
-                &TorchModelRunResponse_oneof_result::error(ref v) => {
+                &TorchJitloadForwardResponse_oneof_result::error(ref v) => {
                     let len = v.compute_size();
                     my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
-                &TorchModelRunResponse_oneof_result::result(ref v) => {
+                &TorchJitloadForwardResponse_oneof_result::result(ref v) => {
                     let len = v.compute_size();
                     my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
                 },
@@ -1897,12 +1040,12 @@ impl ::protobuf::Message for TorchModelRunResponse {
     fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
         if let ::std::option::Option::Some(ref v) = self.result {
             match v {
-                &TorchModelRunResponse_oneof_result::error(ref v) => {
+                &TorchJitloadForwardResponse_oneof_result::error(ref v) => {
                     os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
                     os.write_raw_varint32(v.get_cached_size())?;
                     v.write_to_with_cached_sizes(os)?;
                 },
-                &TorchModelRunResponse_oneof_result::result(ref v) => {
+                &TorchJitloadForwardResponse_oneof_result::result(ref v) => {
                     os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
                     os.write_raw_varint32(v.get_cached_size())?;
                     v.write_to_with_cached_sizes(os)?;
@@ -1939,8 +1082,8 @@ impl ::protobuf::Message for TorchModelRunResponse {
         Self::descriptor_static()
     }
 
-    fn new() -> TorchModelRunResponse {
-        TorchModelRunResponse::new()
+    fn new() -> TorchJitloadForwardResponse {
+        TorchJitloadForwardResponse::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -1949,29 +1092,29 @@ impl ::protobuf::Message for TorchModelRunResponse {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, super::error::VaccelError>(
                 "error",
-                TorchModelRunResponse::has_error,
-                TorchModelRunResponse::get_error,
+                TorchJitloadForwardResponse::has_error,
+                TorchJitloadForwardResponse::get_error,
             ));
-            fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, JitloadForwardResult>(
+            fields.push(::protobuf::reflect::accessor::make_singular_message_accessor::<_, TorchJitloadForwardResult>(
                 "result",
-                TorchModelRunResponse::has_result,
-                TorchModelRunResponse::get_result,
+                TorchJitloadForwardResponse::has_result,
+                TorchJitloadForwardResponse::get_result,
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchModelRunResponse>(
-                "TorchModelRunResponse",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchJitloadForwardResponse>(
+                "TorchJitloadForwardResponse",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static TorchModelRunResponse {
-        static instance: ::protobuf::rt::LazyV2<TorchModelRunResponse> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(TorchModelRunResponse::new)
+    fn default_instance() -> &'static TorchJitloadForwardResponse {
+        static instance: ::protobuf::rt::LazyV2<TorchJitloadForwardResponse> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(TorchJitloadForwardResponse::new)
     }
 }
 
-impl ::protobuf::Clear for TorchModelRunResponse {
+impl ::protobuf::Clear for TorchJitloadForwardResponse {
     fn clear(&mut self) {
         self.result = ::std::option::Option::None;
         self.result = ::std::option::Option::None;
@@ -1979,13 +1122,13 @@ impl ::protobuf::Clear for TorchModelRunResponse {
     }
 }
 
-impl ::std::fmt::Debug for TorchModelRunResponse {
+impl ::std::fmt::Debug for TorchJitloadForwardResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for TorchModelRunResponse {
+impl ::protobuf::reflect::ProtobufValue for TorchJitloadForwardResponse {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
@@ -2108,41 +1251,32 @@ impl ::protobuf::reflect::ProtobufValue for TorchDataType {
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x0btorch.proto\x12\x06vaccel\x1a\x0berror.proto\"W\n\x15TorchModelLoa\
-    dRequest\x12\x1f\n\nsession_id\x18\x01\x20\x01(\rR\tsessionIdB\0\x12\x1b\
-    \n\x08model_id\x18\x02\x20\x01(\x03R\x07modelIdB\0:\0\"t\n\x16TorchModel\
-    LoadResponse\x12\x1f\n\tgraph_def\x18\x01\x20\x01(\x0cH\0R\x08graphDefB\
-    \0\x12-\n\x05error\x18\x02\x20\x01(\x0b2\x13.vaccel.VaccelErrorH\0R\x05e\
-    rrorB\0B\x08\n\x06result:\0\"Y\n\x17TorchModelUnloadRequest\x12\x1f\n\ns\
-    ession_id\x18\x01\x20\x01(\rR\tsessionIdB\0\x12\x1b\n\x08model_id\x18\
-    \x02\x20\x01(\x03R\x07modelIdB\0:\0\"e\n\x18TorchModelUnloadResponse\x12\
-    \x1a\n\x07success\x18\x01\x20\x01(\x08R\x07successB\0\x12+\n\x05error\
-    \x18\x02\x20\x01(\x0b2\x13.vaccel.VaccelErrorR\x05errorB\0:\0\"\xb1\x01\
-    \n\x0bTorchTensor\x12\x14\n\x04data\x18\x01\x20\x01(\x0cR\x04dataB\0\x12\
-    \x14\n\x04size\x18\x02\x20\x01(\x04R\x04sizeB\0\x12\x16\n\x05owned\x18\
-    \x03\x20\x01(\rR\x05ownedB\0\x12\x19\n\x07nr_dims\x18\x04\x20\x01(\x05R\
-    \x06nrDimsB\0\x12\x14\n\x04dims\x18\x05\x20\x03(\x04R\x04dimsB\0\x12+\n\
-    \x04type\x18\x06\x20\x01(\x0e2\x15.vaccel.TorchDataTypeR\x04typeB\0:\0\"\
-    \xe7\x01\n\x14TorchModelRunRequest\x12\x1f\n\nsession_id\x18\x01\x20\x01\
-    (\rR\tsessionIdB\0\x12\x1b\n\x08model_id\x18\x02\x20\x01(\x03R\x07modelI\
-    dB\0\x12!\n\x0brun_options\x18\x03\x20\x01(\x0cR\nrunOptionsB\0\x124\n\n\
-    in_tensors\x18\x04\x20\x03(\x0b2\x13.vaccel.TorchTensorR\tinTensorsB\0\
-    \x126\n\x0bout_tensors\x18\x05\x20\x03(\x0b2\x13.vaccel.TorchTensorR\nou\
-    tTensorsB\0:\0\"P\n\x14JitloadForwardResult\x126\n\x0bout_tensors\x18\
-    \x01\x20\x03(\x0b2\x13.vaccel.TorchTensorR\noutTensorsB\0:\0\"\x8c\x01\n\
-    \x15TorchModelRunResponse\x12-\n\x05error\x18\x01\x20\x01(\x0b2\x13.vacc\
-    el.VaccelErrorH\0R\x05errorB\0\x128\n\x06result\x18\x02\x20\x01(\x0b2\
-    \x1c.vaccel.JitloadForwardResultH\0R\x06resultB\0B\x08\n\x06result:\0*\
-    \xb0\x02\n\rTorchDataType\x12\n\n\x06UNUSED\x10\0\x12\t\n\x05FLOAT\x10\
-    \x01\x12\n\n\x06DOUBLE\x10\x02\x12\t\n\x05INT32\x10\x03\x12\t\n\x05UINT8\
-    \x10\x04\x12\t\n\x05INT16\x10\x05\x12\x08\n\x04INT8\x10\x06\x12\n\n\x06S\
-    TRING\x10\x07\x12\x0b\n\x07COMPLEX\x10\x08\x12\t\n\x05INT64\x10\t\x12\
-    \x08\n\x04BOOL\x10\n\x12\t\n\x05QINT8\x10\x0b\x12\n\n\x06QUINT8\x10\x0c\
-    \x12\n\n\x06QINT32\x10\r\x12\x0c\n\x08BFLOAT16\x10\x0e\x12\n\n\x06QINT16\
-    \x10\x0f\x12\x0b\n\x07QUINT16\x10\x10\x12\n\n\x06UINT16\x10\x11\x12\x0e\
-    \n\nCOMPLEX128\x10\x12\x12\x08\n\x04HALF\x10\x13\x12\x0c\n\x08RESOURCE\
-    \x10\x14\x12\x0b\n\x07VARIANT\x10\x15\x12\n\n\x06UINT32\x10\x16\x12\n\n\
-    \x06UINT64\x10\x17\x1a\0B\0b\x06proto3\
+    \n\x0btorch.proto\x12\x06vaccel\x1a\x0berror.proto\"\xb1\x01\n\x0bTorchT\
+    ensor\x12\x14\n\x04data\x18\x01\x20\x01(\x0cR\x04dataB\0\x12\x14\n\x04si\
+    ze\x18\x02\x20\x01(\x04R\x04sizeB\0\x12\x16\n\x05owned\x18\x03\x20\x01(\
+    \rR\x05ownedB\0\x12\x19\n\x07nr_dims\x18\x04\x20\x01(\x05R\x06nrDimsB\0\
+    \x12\x14\n\x04dims\x18\x05\x20\x03(\x04R\x04dimsB\0\x12+\n\x04type\x18\
+    \x06\x20\x01(\x0e2\x15.vaccel.TorchDataTypeR\x04typeB\0:\0\"\xed\x01\n\
+    \x1aTorchJitloadForwardRequest\x12\x1f\n\nsession_id\x18\x01\x20\x01(\rR\
+    \tsessionIdB\0\x12\x1b\n\x08model_id\x18\x02\x20\x01(\x03R\x07modelIdB\0\
+    \x12!\n\x0brun_options\x18\x03\x20\x01(\x0cR\nrunOptionsB\0\x124\n\nin_t\
+    ensors\x18\x04\x20\x03(\x0b2\x13.vaccel.TorchTensorR\tinTensorsB\0\x126\
+    \n\x0bout_tensors\x18\x05\x20\x03(\x0b2\x13.vaccel.TorchTensorR\noutTens\
+    orsB\0:\0\"U\n\x19TorchJitloadForwardResult\x126\n\x0bout_tensors\x18\
+    \x01\x20\x03(\x0b2\x13.vaccel.TorchTensorR\noutTensorsB\0:\0\"\x97\x01\n\
+    \x1bTorchJitloadForwardResponse\x12-\n\x05error\x18\x01\x20\x01(\x0b2\
+    \x13.vaccel.VaccelErrorH\0R\x05errorB\0\x12=\n\x06result\x18\x02\x20\x01\
+    (\x0b2!.vaccel.TorchJitloadForwardResultH\0R\x06resultB\0B\x08\n\x06resu\
+    lt:\0*\xb0\x02\n\rTorchDataType\x12\n\n\x06UNUSED\x10\0\x12\t\n\x05FLOAT\
+    \x10\x01\x12\n\n\x06DOUBLE\x10\x02\x12\t\n\x05INT32\x10\x03\x12\t\n\x05U\
+    INT8\x10\x04\x12\t\n\x05INT16\x10\x05\x12\x08\n\x04INT8\x10\x06\x12\n\n\
+    \x06STRING\x10\x07\x12\x0b\n\x07COMPLEX\x10\x08\x12\t\n\x05INT64\x10\t\
+    \x12\x08\n\x04BOOL\x10\n\x12\t\n\x05QINT8\x10\x0b\x12\n\n\x06QUINT8\x10\
+    \x0c\x12\n\n\x06QINT32\x10\r\x12\x0c\n\x08BFLOAT16\x10\x0e\x12\n\n\x06QI\
+    NT16\x10\x0f\x12\x0b\n\x07QUINT16\x10\x10\x12\n\n\x06UINT16\x10\x11\x12\
+    \x0e\n\nCOMPLEX128\x10\x12\x12\x08\n\x04HALF\x10\x13\x12\x0c\n\x08RESOUR\
+    CE\x10\x14\x12\x0b\n\x07VARIANT\x10\x15\x12\n\n\x06UINT32\x10\x16\x12\n\
+    \n\x06UINT64\x10\x17\x1a\0B\0b\x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;

@@ -1137,29 +1137,13 @@ impl ::protobuf::reflect::ProtobufValue for TorchJitloadForwardResponse {
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 pub enum TorchDataType {
     UNUSED = 0,
-    FLOAT = 1,
-    DOUBLE = 2,
-    INT32 = 3,
-    UINT8 = 4,
-    INT16 = 5,
-    INT8 = 6,
-    STRING = 7,
-    COMPLEX = 8,
-    INT64 = 9,
-    BOOL = 10,
-    QINT8 = 11,
-    QUINT8 = 12,
-    QINT32 = 13,
-    BFLOAT16 = 14,
-    QINT16 = 15,
-    QUINT16 = 16,
-    UINT16 = 17,
-    COMPLEX128 = 18,
-    HALF = 19,
-    RESOURCE = 20,
-    VARIANT = 21,
-    UINT32 = 22,
-    UINT64 = 23,
+    UInt8 = 1,
+    Int8 = 2,
+    Int16 = 3,
+    Int32 = 4,
+    Int64 = 5,
+    Half = 6,
+    FLOAT = 7,
 }
 
 impl ::protobuf::ProtobufEnum for TorchDataType {
@@ -1170,29 +1154,13 @@ impl ::protobuf::ProtobufEnum for TorchDataType {
     fn from_i32(value: i32) -> ::std::option::Option<TorchDataType> {
         match value {
             0 => ::std::option::Option::Some(TorchDataType::UNUSED),
-            1 => ::std::option::Option::Some(TorchDataType::FLOAT),
-            2 => ::std::option::Option::Some(TorchDataType::DOUBLE),
-            3 => ::std::option::Option::Some(TorchDataType::INT32),
-            4 => ::std::option::Option::Some(TorchDataType::UINT8),
-            5 => ::std::option::Option::Some(TorchDataType::INT16),
-            6 => ::std::option::Option::Some(TorchDataType::INT8),
-            7 => ::std::option::Option::Some(TorchDataType::STRING),
-            8 => ::std::option::Option::Some(TorchDataType::COMPLEX),
-            9 => ::std::option::Option::Some(TorchDataType::INT64),
-            10 => ::std::option::Option::Some(TorchDataType::BOOL),
-            11 => ::std::option::Option::Some(TorchDataType::QINT8),
-            12 => ::std::option::Option::Some(TorchDataType::QUINT8),
-            13 => ::std::option::Option::Some(TorchDataType::QINT32),
-            14 => ::std::option::Option::Some(TorchDataType::BFLOAT16),
-            15 => ::std::option::Option::Some(TorchDataType::QINT16),
-            16 => ::std::option::Option::Some(TorchDataType::QUINT16),
-            17 => ::std::option::Option::Some(TorchDataType::UINT16),
-            18 => ::std::option::Option::Some(TorchDataType::COMPLEX128),
-            19 => ::std::option::Option::Some(TorchDataType::HALF),
-            20 => ::std::option::Option::Some(TorchDataType::RESOURCE),
-            21 => ::std::option::Option::Some(TorchDataType::VARIANT),
-            22 => ::std::option::Option::Some(TorchDataType::UINT32),
-            23 => ::std::option::Option::Some(TorchDataType::UINT64),
+            1 => ::std::option::Option::Some(TorchDataType::UInt8),
+            2 => ::std::option::Option::Some(TorchDataType::Int8),
+            3 => ::std::option::Option::Some(TorchDataType::Int16),
+            4 => ::std::option::Option::Some(TorchDataType::Int32),
+            5 => ::std::option::Option::Some(TorchDataType::Int64),
+            6 => ::std::option::Option::Some(TorchDataType::Half),
+            7 => ::std::option::Option::Some(TorchDataType::FLOAT),
             _ => ::std::option::Option::None
         }
     }
@@ -1200,29 +1168,13 @@ impl ::protobuf::ProtobufEnum for TorchDataType {
     fn values() -> &'static [Self] {
         static values: &'static [TorchDataType] = &[
             TorchDataType::UNUSED,
+            TorchDataType::UInt8,
+            TorchDataType::Int8,
+            TorchDataType::Int16,
+            TorchDataType::Int32,
+            TorchDataType::Int64,
+            TorchDataType::Half,
             TorchDataType::FLOAT,
-            TorchDataType::DOUBLE,
-            TorchDataType::INT32,
-            TorchDataType::UINT8,
-            TorchDataType::INT16,
-            TorchDataType::INT8,
-            TorchDataType::STRING,
-            TorchDataType::COMPLEX,
-            TorchDataType::INT64,
-            TorchDataType::BOOL,
-            TorchDataType::QINT8,
-            TorchDataType::QUINT8,
-            TorchDataType::QINT32,
-            TorchDataType::BFLOAT16,
-            TorchDataType::QINT16,
-            TorchDataType::QUINT16,
-            TorchDataType::UINT16,
-            TorchDataType::COMPLEX128,
-            TorchDataType::HALF,
-            TorchDataType::RESOURCE,
-            TorchDataType::VARIANT,
-            TorchDataType::UINT32,
-            TorchDataType::UINT64,
         ];
         values
     }
@@ -1267,16 +1219,10 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x1bTorchJitloadForwardResponse\x12-\n\x05error\x18\x01\x20\x01(\x0b2\
     \x13.vaccel.VaccelErrorH\0R\x05errorB\0\x12=\n\x06result\x18\x02\x20\x01\
     (\x0b2!.vaccel.TorchJitloadForwardResultH\0R\x06resultB\0B\x08\n\x06resu\
-    lt:\0*\xb0\x02\n\rTorchDataType\x12\n\n\x06UNUSED\x10\0\x12\t\n\x05FLOAT\
-    \x10\x01\x12\n\n\x06DOUBLE\x10\x02\x12\t\n\x05INT32\x10\x03\x12\t\n\x05U\
-    INT8\x10\x04\x12\t\n\x05INT16\x10\x05\x12\x08\n\x04INT8\x10\x06\x12\n\n\
-    \x06STRING\x10\x07\x12\x0b\n\x07COMPLEX\x10\x08\x12\t\n\x05INT64\x10\t\
-    \x12\x08\n\x04BOOL\x10\n\x12\t\n\x05QINT8\x10\x0b\x12\n\n\x06QUINT8\x10\
-    \x0c\x12\n\n\x06QINT32\x10\r\x12\x0c\n\x08BFLOAT16\x10\x0e\x12\n\n\x06QI\
-    NT16\x10\x0f\x12\x0b\n\x07QUINT16\x10\x10\x12\n\n\x06UINT16\x10\x11\x12\
-    \x0e\n\nCOMPLEX128\x10\x12\x12\x08\n\x04HALF\x10\x13\x12\x0c\n\x08RESOUR\
-    CE\x10\x14\x12\x0b\n\x07VARIANT\x10\x15\x12\n\n\x06UINT32\x10\x16\x12\n\
-    \n\x06UINT64\x10\x17\x1a\0B\0b\x06proto3\
+    lt:\0*h\n\rTorchDataType\x12\n\n\x06UNUSED\x10\0\x12\t\n\x05UInt8\x10\
+    \x01\x12\x08\n\x04Int8\x10\x02\x12\t\n\x05Int16\x10\x03\x12\t\n\x05Int32\
+    \x10\x04\x12\t\n\x05Int64\x10\x05\x12\x08\n\x04Half\x10\x06\x12\t\n\x05F\
+    LOAT\x10\x07\x1a\0B\0b\x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;

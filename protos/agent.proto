@@ -41,6 +41,7 @@ service VaccelAgent {
 	rpc TensorflowModelUnload(TensorflowModelUnloadRequest) returns (TensorflowModelUnloadResponse);
 	rpc TensorflowModelRun(TensorflowModelRunRequest) returns (TensorflowModelRunResponse);
 
+	rpc Genop(GenopRequest) returns (GenopResponse);
 	// PyTorch inference API
 	//rpc TorchModelLoad(TorchModelLoadRequest) returns (TorchModelLoadResponse);
 	//rpc TorchModelUnload(TorchModelUnloadRequest) returns (TorchModelUnloadResponse);

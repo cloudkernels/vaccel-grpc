@@ -6,7 +6,8 @@ edition = "2018"
 license = "Apache-2.0"
 
 [dependencies]
-ttrpc = "0.6.1"
+#ttrpc = {path="/home/ananos.linux/develop/ttrpc-rust" }
+ttrpc = {git="https://github.com/cloudkernels/ttrpc-rust", tag="v0.6.0-vaccel-1" }
 protobuf = "2.28.0"
 
 [build-dependencies]

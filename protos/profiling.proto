@@ -18,25 +18,23 @@ package vaccel;
 
 import "error.proto";
 
-message GenopArg {
-	uint32 size = 1;
-	bytes buf = 2;
-};
-
-message GenopRequest {
+message ProfilingRequest {
 	uint32 session_id = 1;
-
-	repeated GenopArg read_args = 2;
-	repeated GenopArg write_args = 3;
 };
 
-message GenopResult {
-	repeated GenopArg write_args = 1;
-};
-
-message GenopResponse {
-	oneof result {
-		VaccelError error = 1;
-		GenopResult result = 2;
+message ProfRegion {
+	message Sample {
+		uint64 start = 1;
+		uint64 time = 2;
 	}
+	string name = 1;
+	repeated Sample samples = 2;
+};
+
+message ProfRegions {
+	repeated ProfRegion timer = 1;
+};
+
+message ProfilingResponse {
+	ProfRegions result = 1;
 };

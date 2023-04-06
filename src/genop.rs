@@ -635,8 +635,6 @@ impl ::protobuf::reflect::ProtobufValue for GenopResult {
 
 #[derive(PartialEq,Clone,Default)]
 pub struct GenopResponse {
-    // message fields
-    pub timer_buf: ::std::string::String,
     // message oneof groups
     pub result: ::std::option::Option<GenopResponse_oneof_result>,
     // special fields
@@ -758,32 +756,6 @@ impl GenopResponse {
             GenopResult::new()
         }
     }
-
-    // string timer_buf = 3;
-
-
-    pub fn get_timer_buf(&self) -> &str {
-        &self.timer_buf
-    }
-    pub fn clear_timer_buf(&mut self) {
-        self.timer_buf.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_timer_buf(&mut self, v: ::std::string::String) {
-        self.timer_buf = v;
-    }
-
-    // Mutable pointer to the field.
-    // If field is not initialized, it is initialized with default value first.
-    pub fn mut_timer_buf(&mut self) -> &mut ::std::string::String {
-        &mut self.timer_buf
-    }
-
-    // Take field
-    pub fn take_timer_buf(&mut self) -> ::std::string::String {
-        ::std::mem::replace(&mut self.timer_buf, ::std::string::String::new())
-    }
 }
 
 impl ::protobuf::Message for GenopResponse {
@@ -817,9 +789,6 @@ impl ::protobuf::Message for GenopResponse {
                     }
                     self.result = ::std::option::Option::Some(GenopResponse_oneof_result::result(is.read_message()?));
                 },
-                3 => {
-                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.timer_buf)?;
-                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -832,9 +801,6 @@ impl ::protobuf::Message for GenopResponse {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        if !self.timer_buf.is_empty() {
-            my_size += ::protobuf::rt::string_size(3, &self.timer_buf);
-        }
         if let ::std::option::Option::Some(ref v) = self.result {
             match v {
                 &GenopResponse_oneof_result::error(ref v) => {
@@ -853,9 +819,6 @@ impl ::protobuf::Message for GenopResponse {
     }
 
     fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        if !self.timer_buf.is_empty() {
-            os.write_string(3, &self.timer_buf)?;
-        }
         if let ::std::option::Option::Some(ref v) = self.result {
             match v {
                 &GenopResponse_oneof_result::error(ref v) => {
@@ -918,11 +881,6 @@ impl ::protobuf::Message for GenopResponse {
                 GenopResponse::has_result,
                 GenopResponse::get_result,
             ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
-                "timer_buf",
-                |m: &GenopResponse| { &m.timer_buf },
-                |m: &mut GenopResponse| { &mut m.timer_buf },
-            ));
             ::protobuf::reflect::MessageDescriptor::new_pb_name::<GenopResponse>(
                 "GenopResponse",
                 fields,
@@ -941,7 +899,6 @@ impl ::protobuf::Clear for GenopResponse {
     fn clear(&mut self) {
         self.result = ::std::option::Option::None;
         self.result = ::std::option::Option::None;
-        self.timer_buf.clear();
         self.unknown_fields.clear();
     }
 }
@@ -966,10 +923,10 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x03(\x0b2\x10.vaccel.GenopArgR\x08readArgsB\0\x121\n\nwrite_args\x18\
     \x03\x20\x03(\x0b2\x10.vaccel.GenopArgR\twriteArgsB\0:\0\"B\n\x0bGenopRe\
     sult\x121\n\nwrite_args\x18\x01\x20\x03(\x0b2\x10.vaccel.GenopArgR\twrit\
-    eArgsB\0:\0\"\x9a\x01\n\rGenopResponse\x12-\n\x05error\x18\x01\x20\x01(\
-    \x0b2\x13.vaccel.VaccelErrorH\0R\x05errorB\0\x12/\n\x06result\x18\x02\
-    \x20\x01(\x0b2\x13.vaccel.GenopResultH\0R\x06resultB\0\x12\x1d\n\ttimer_\
-    buf\x18\x03\x20\x01(\tR\x08timerBufB\0B\x08\n\x06result:\0B\0b\x06proto3\
+    eArgsB\0:\0\"{\n\rGenopResponse\x12-\n\x05error\x18\x01\x20\x01(\x0b2\
+    \x13.vaccel.VaccelErrorH\0R\x05errorB\0\x12/\n\x06result\x18\x02\x20\x01\
+    (\x0b2\x13.vaccel.GenopResultH\0R\x06resultB\0B\x08\n\x06result:\0B\0b\
+    \x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;

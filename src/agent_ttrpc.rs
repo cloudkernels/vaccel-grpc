@@ -93,6 +93,12 @@ impl VaccelAgentClient {
         Ok(cres)
     }
 
+    pub fn genop(&self, ctx: ttrpc::context::Context, req: &super::genop::GenopRequest) -> ::ttrpc::Result<super::genop::GenopResponse> {
+        let mut cres = super::genop::GenopResponse::new();
+        ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "Genop", cres);
+        Ok(cres)
+    }
+
     pub fn torch_jitload_forward(&self, ctx: ttrpc::context::Context, req: &super::torch::TorchJitloadForwardRequest) -> ::ttrpc::Result<super::torch::TorchJitloadForwardResponse> {
         let mut cres = super::torch::TorchJitloadForwardResponse::new();
         ::ttrpc::client_request!(self, ctx, req, "vaccel.VaccelAgent", "TorchJitloadForward", cres);
@@ -210,6 +216,17 @@ impl ::ttrpc::MethodHandler for TensorflowModelRunMethod {
     }
 }
 
+struct GenopMethod {
+    service: Arc<std::boxed::Box<dyn VaccelAgent + Send + Sync>>,
+}
+
+impl ::ttrpc::MethodHandler for GenopMethod {
+    fn handler(&self, ctx: ::ttrpc::TtrpcContext, req: ::ttrpc::Request) -> ::ttrpc::Result<()> {
+        ::ttrpc::request_handler!(self, ctx, req, genop, GenopRequest, genop);
+        Ok(())
+    }
+}
+
 struct TorchJitloadForwardMethod {
     service: Arc<std::boxed::Box<dyn VaccelAgent + Send + Sync>>,
 }
@@ -252,6 +269,9 @@ pub trait VaccelAgent {
     fn tensorflow_model_run(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::tensorflow::TensorflowModelRunRequest) -> ::ttrpc::Result<super::tensorflow::TensorflowModelRunResponse> {
         Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TensorflowModelRun is not supported".to_string())))
     }
+    fn genop(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::genop::GenopRequest) -> ::ttrpc::Result<super::genop::GenopResponse> {
+        Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/Genop is not supported".to_string())))
+    }
     fn torch_jitload_forward(&self, _ctx: &::ttrpc::TtrpcContext, _req: super::torch::TorchJitloadForwardRequest) -> ::ttrpc::Result<super::torch::TorchJitloadForwardResponse> {
         Err(::ttrpc::Error::RpcStatus(::ttrpc::get_status(::ttrpc::Code::NOT_FOUND, "/vaccel.VaccelAgent/TorchJitloadForward is not supported".to_string())))
     }
@@ -289,6 +309,9 @@ pub fn create_vaccel_agent(service: Arc<std::boxed::Box<dyn VaccelAgent + Send +
 
     methods.insert("/vaccel.VaccelAgent/TensorflowModelRun".to_string(),
                     std::boxed::Box::new(TensorflowModelRunMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
+
+    methods.insert("/vaccel.VaccelAgent/Genop".to_string(),
+                    std::boxed::Box::new(GenopMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);
 
     methods.insert("/vaccel.VaccelAgent/TorchJitloadForward".to_string(),
                     std::boxed::Box::new(TorchJitloadForwardMethod{service: service.clone()}) as std::boxed::Box<dyn ::ttrpc::MethodHandler + Send + Sync>);

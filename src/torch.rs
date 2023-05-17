@@ -27,9 +27,6 @@
 pub struct TorchTensor {
     // message fields
     pub data: ::std::vec::Vec<u8>,
-    pub size: u64,
-    pub owned: u32,
-    pub nr_dims: i32,
     pub dims: ::std::vec::Vec<u64>,
     pub field_type: TorchDataType,
     // special fields
@@ -74,52 +71,7 @@ impl TorchTensor {
         ::std::mem::replace(&mut self.data, ::std::vec::Vec::new())
     }
 
-    // uint64 size = 2;
-
-
-    pub fn get_size(&self) -> u64 {
-        self.size
-    }
-    pub fn clear_size(&mut self) {
-        self.size = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_size(&mut self, v: u64) {
-        self.size = v;
-    }
-
-    // uint32 owned = 3;
-
-
-    pub fn get_owned(&self) -> u32 {
-        self.owned
-    }
-    pub fn clear_owned(&mut self) {
-        self.owned = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_owned(&mut self, v: u32) {
-        self.owned = v;
-    }
-
-    // int32 nr_dims = 4;
-
-
-    pub fn get_nr_dims(&self) -> i32 {
-        self.nr_dims
-    }
-    pub fn clear_nr_dims(&mut self) {
-        self.nr_dims = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_nr_dims(&mut self, v: i32) {
-        self.nr_dims = v;
-    }
-
-    // repeated uint64 dims = 5;
+    // repeated uint64 dims = 2;
 
 
     pub fn get_dims(&self) -> &[u64] {
@@ -144,7 +96,7 @@ impl TorchTensor {
         ::std::mem::replace(&mut self.dims, ::std::vec::Vec::new())
     }
 
-    // .vaccel.TorchDataType type = 6;
+    // .vaccel.TorchDataType type = 3;
 
 
     pub fn get_field_type(&self) -> TorchDataType {
@@ -173,31 +125,10 @@ impl ::protobuf::Message for TorchTensor {
                     ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.data)?;
                 },
                 2 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_uint64()?;
-                    self.size = tmp;
-                },
-                3 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_uint32()?;
-                    self.owned = tmp;
-                },
-                4 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_int32()?;
-                    self.nr_dims = tmp;
-                },
-                5 => {
                     ::protobuf::rt::read_repeated_uint64_into(wire_type, is, &mut self.dims)?;
                 },
-                6 => {
-                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 6, &mut self.unknown_fields)?
+                3 => {
+                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 3, &mut self.unknown_fields)?
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -214,20 +145,11 @@ impl ::protobuf::Message for TorchTensor {
         if !self.data.is_empty() {
             my_size += ::protobuf::rt::bytes_size(1, &self.data);
         }
-        if self.size != 0 {
-            my_size += ::protobuf::rt::value_size(2, self.size, ::protobuf::wire_format::WireTypeVarint);
-        }
-        if self.owned != 0 {
-            my_size += ::protobuf::rt::value_size(3, self.owned, ::protobuf::wire_format::WireTypeVarint);
-        }
-        if self.nr_dims != 0 {
-            my_size += ::protobuf::rt::value_size(4, self.nr_dims, ::protobuf::wire_format::WireTypeVarint);
-        }
         for value in &self.dims {
-            my_size += ::protobuf::rt::value_size(5, *value, ::protobuf::wire_format::WireTypeVarint);
+            my_size += ::protobuf::rt::value_size(2, *value, ::protobuf::wire_format::WireTypeVarint);
         };
         if self.field_type != TorchDataType::UNUSED {
-            my_size += ::protobuf::rt::enum_size(6, self.field_type);
+            my_size += ::protobuf::rt::enum_size(3, self.field_type);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
@@ -238,20 +160,11 @@ impl ::protobuf::Message for TorchTensor {
         if !self.data.is_empty() {
             os.write_bytes(1, &self.data)?;
         }
-        if self.size != 0 {
-            os.write_uint64(2, self.size)?;
-        }
-        if self.owned != 0 {
-            os.write_uint32(3, self.owned)?;
-        }
-        if self.nr_dims != 0 {
-            os.write_int32(4, self.nr_dims)?;
-        }
         for v in &self.dims {
-            os.write_uint64(5, *v)?;
+            os.write_uint64(2, *v)?;
         };
         if self.field_type != TorchDataType::UNUSED {
-            os.write_enum(6, ::protobuf::ProtobufEnum::value(&self.field_type))?;
+            os.write_enum(3, ::protobuf::ProtobufEnum::value(&self.field_type))?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -296,21 +209,6 @@ impl ::protobuf::Message for TorchTensor {
                 |m: &TorchTensor| { &m.data },
                 |m: &mut TorchTensor| { &mut m.data },
             ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
-                "size",
-                |m: &TorchTensor| { &m.size },
-                |m: &mut TorchTensor| { &mut m.size },
-            ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
-                "owned",
-                |m: &TorchTensor| { &m.owned },
-                |m: &mut TorchTensor| { &mut m.owned },
-            ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
-                "nr_dims",
-                |m: &TorchTensor| { &m.nr_dims },
-                |m: &mut TorchTensor| { &mut m.nr_dims },
-            ));
             fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
                 "dims",
                 |m: &TorchTensor| { &m.dims },
@@ -338,9 +236,6 @@ impl ::protobuf::Message for TorchTensor {
 impl ::protobuf::Clear for TorchTensor {
     fn clear(&mut self) {
         self.data.clear();
-        self.size = 0;
-        self.owned = 0;
-        self.nr_dims = 0;
         self.dims.clear();
         self.field_type = TorchDataType::UNUSED;
         self.unknown_fields.clear();
@@ -366,7 +261,6 @@ pub struct TorchJitloadForwardRequest {
     pub model_id: i64,
     pub run_options: ::std::vec::Vec<u8>,
     pub in_tensors: ::protobuf::RepeatedField<TorchTensor>,
-    pub out_tensors: ::protobuf::RepeatedField<TorchTensor>,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
     pub cached_size: ::protobuf::CachedSize,
@@ -463,41 +357,11 @@ impl TorchJitloadForwardRequest {
     pub fn take_in_tensors(&mut self) -> ::protobuf::RepeatedField<TorchTensor> {
         ::std::mem::replace(&mut self.in_tensors, ::protobuf::RepeatedField::new())
     }
-
-    // repeated .vaccel.TorchTensor out_tensors = 5;
-
-
-    pub fn get_out_tensors(&self) -> &[TorchTensor] {
-        &self.out_tensors
-    }
-    pub fn clear_out_tensors(&mut self) {
-        self.out_tensors.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_out_tensors(&mut self, v: ::protobuf::RepeatedField<TorchTensor>) {
-        self.out_tensors = v;
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_out_tensors(&mut self) -> &mut ::protobuf::RepeatedField<TorchTensor> {
-        &mut self.out_tensors
-    }
-
-    // Take field
-    pub fn take_out_tensors(&mut self) -> ::protobuf::RepeatedField<TorchTensor> {
-        ::std::mem::replace(&mut self.out_tensors, ::protobuf::RepeatedField::new())
-    }
 }
 
 impl ::protobuf::Message for TorchJitloadForwardRequest {
     fn is_initialized(&self) -> bool {
         for v in &self.in_tensors {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        for v in &self.out_tensors {
             if !v.is_initialized() {
                 return false;
             }
@@ -529,9 +393,6 @@ impl ::protobuf::Message for TorchJitloadForwardRequest {
                 4 => {
                     ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.in_tensors)?;
                 },
-                5 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.out_tensors)?;
-                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -557,10 +418,6 @@ impl ::protobuf::Message for TorchJitloadForwardRequest {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in &self.out_tensors {
-            let len = value.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        };
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -578,11 +435,6 @@ impl ::protobuf::Message for TorchJitloadForwardRequest {
         }
         for v in &self.in_tensors {
             os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        };
-        for v in &self.out_tensors {
-            os.write_tag(5, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         };
@@ -644,11 +496,6 @@ impl ::protobuf::Message for TorchJitloadForwardRequest {
                 |m: &TorchJitloadForwardRequest| { &m.in_tensors },
                 |m: &mut TorchJitloadForwardRequest| { &mut m.in_tensors },
             ));
-            fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<TorchTensor>>(
-                "out_tensors",
-                |m: &TorchJitloadForwardRequest| { &m.out_tensors },
-                |m: &mut TorchJitloadForwardRequest| { &mut m.out_tensors },
-            ));
             ::protobuf::reflect::MessageDescriptor::new_pb_name::<TorchJitloadForwardRequest>(
                 "TorchJitloadForwardRequest",
                 fields,
@@ -669,7 +516,6 @@ impl ::protobuf::Clear for TorchJitloadForwardRequest {
         self.model_id = 0;
         self.run_options.clear();
         self.in_tensors.clear();
-        self.out_tensors.clear();
         self.unknown_fields.clear();
     }
 }
@@ -1203,26 +1049,22 @@ impl ::protobuf::reflect::ProtobufValue for TorchDataType {
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x0btorch.proto\x12\x06vaccel\x1a\x0berror.proto\"\xb1\x01\n\x0bTorchT\
-    ensor\x12\x14\n\x04data\x18\x01\x20\x01(\x0cR\x04dataB\0\x12\x14\n\x04si\
-    ze\x18\x02\x20\x01(\x04R\x04sizeB\0\x12\x16\n\x05owned\x18\x03\x20\x01(\
-    \rR\x05ownedB\0\x12\x19\n\x07nr_dims\x18\x04\x20\x01(\x05R\x06nrDimsB\0\
-    \x12\x14\n\x04dims\x18\x05\x20\x03(\x04R\x04dimsB\0\x12+\n\x04type\x18\
-    \x06\x20\x01(\x0e2\x15.vaccel.TorchDataTypeR\x04typeB\0:\0\"\xed\x01\n\
-    \x1aTorchJitloadForwardRequest\x12\x1f\n\nsession_id\x18\x01\x20\x01(\rR\
-    \tsessionIdB\0\x12\x1b\n\x08model_id\x18\x02\x20\x01(\x03R\x07modelIdB\0\
-    \x12!\n\x0brun_options\x18\x03\x20\x01(\x0cR\nrunOptionsB\0\x124\n\nin_t\
-    ensors\x18\x04\x20\x03(\x0b2\x13.vaccel.TorchTensorR\tinTensorsB\0\x126\
-    \n\x0bout_tensors\x18\x05\x20\x03(\x0b2\x13.vaccel.TorchTensorR\noutTens\
-    orsB\0:\0\"U\n\x19TorchJitloadForwardResult\x126\n\x0bout_tensors\x18\
-    \x01\x20\x03(\x0b2\x13.vaccel.TorchTensorR\noutTensorsB\0:\0\"\x97\x01\n\
-    \x1bTorchJitloadForwardResponse\x12-\n\x05error\x18\x01\x20\x01(\x0b2\
-    \x13.vaccel.VaccelErrorH\0R\x05errorB\0\x12=\n\x06result\x18\x02\x20\x01\
-    (\x0b2!.vaccel.TorchJitloadForwardResultH\0R\x06resultB\0B\x08\n\x06resu\
-    lt:\0*h\n\rTorchDataType\x12\n\n\x06UNUSED\x10\0\x12\t\n\x05UInt8\x10\
-    \x01\x12\x08\n\x04Int8\x10\x02\x12\t\n\x05Int16\x10\x03\x12\t\n\x05Int32\
-    \x10\x04\x12\t\n\x05Int64\x10\x05\x12\x08\n\x04Half\x10\x06\x12\t\n\x05F\
-    LOAT\x10\x07\x1a\0B\0b\x06proto3\
+    \n\x0btorch.proto\x12\x06vaccel\x1a\x0berror.proto\"h\n\x0bTorchTensor\
+    \x12\x14\n\x04data\x18\x01\x20\x01(\x0cR\x04dataB\0\x12\x14\n\x04dims\
+    \x18\x02\x20\x03(\x04R\x04dimsB\0\x12+\n\x04type\x18\x03\x20\x01(\x0e2\
+    \x15.vaccel.TorchDataTypeR\x04typeB\0:\0\"\xb5\x01\n\x1aTorchJitloadForw\
+    ardRequest\x12\x1f\n\nsession_id\x18\x01\x20\x01(\rR\tsessionIdB\0\x12\
+    \x1b\n\x08model_id\x18\x02\x20\x01(\x03R\x07modelIdB\0\x12!\n\x0brun_opt\
+    ions\x18\x03\x20\x01(\x0cR\nrunOptionsB\0\x124\n\nin_tensors\x18\x04\x20\
+    \x03(\x0b2\x13.vaccel.TorchTensorR\tinTensorsB\0:\0\"U\n\x19TorchJitload\
+    ForwardResult\x126\n\x0bout_tensors\x18\x01\x20\x03(\x0b2\x13.vaccel.Tor\
+    chTensorR\noutTensorsB\0:\0\"\x97\x01\n\x1bTorchJitloadForwardResponse\
+    \x12-\n\x05error\x18\x01\x20\x01(\x0b2\x13.vaccel.VaccelErrorH\0R\x05err\
+    orB\0\x12=\n\x06result\x18\x02\x20\x01(\x0b2!.vaccel.TorchJitloadForward\
+    ResultH\0R\x06resultB\0B\x08\n\x06result:\0*h\n\rTorchDataType\x12\n\n\
+    \x06UNUSED\x10\0\x12\t\n\x05UInt8\x10\x01\x12\x08\n\x04Int8\x10\x02\x12\
+    \t\n\x05Int16\x10\x03\x12\t\n\x05Int32\x10\x04\x12\t\n\x05Int64\x10\x05\
+    \x12\x08\n\x04Half\x10\x06\x12\t\n\x05FLOAT\x10\x07\x1a\0B\0b\x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;
